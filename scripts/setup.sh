@@ -170,7 +170,7 @@ logo () {
 logo "rxfatalslash"
 
 # Root
-if [ $EUID -ne 0 ]; then
+if [[ $EUID -ne 0 ]]; then
     printf "%s%sERROR:%s Ejecuta el script como root\n" "${BLD}" "${CRE}" "${CNC}"
     exit 1
 fi
@@ -219,8 +219,8 @@ case "$distro" in
     ;;
     ["Ubuntu""Debian"]*)
         printf "%s%sSistema Ubuntu detectado%s\n\n" "${BLD}" "${CGR}" "${CNC}"
-        jdk="$(apt-cache search openjdk-*-jdk)"
-        wget="$(apt-cache search wget)"
+        jdk="$(dpkg -l | grep openjdk)"
+        wget="$(dpkg -l | grep wget)"
         mkdir -p $dir
         
         # JDK check
