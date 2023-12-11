@@ -23,7 +23,10 @@ while True:
     match r.lower():
         case "s":
             if len(sys.argv) < 2:
-                os.system('clear')
+                if platform.system() == "Windows":
+                    os.system('cls')
+                else:
+                    os.system('clear')
                 print("\033[31m\033[1mERROR:\033[0m Pasa la carpeta con los mods deseados como argumento")
                 sys.exit(1)
             else:
@@ -31,11 +34,17 @@ while True:
                     if os.path.isdir(sys.argv[1]):
                         break
                     else:
-                        os.system('clear')
+                        if platform.system() == "Windows":
+                            os.system('cls')
+                        else:
+                            os.system('clear')
                         print("\033[31m\033[1mERROR:\033[0m El elemento no es una carpeta")
                         sys.exit(1)
                 else:
-                    os.system('clear')
+                    if platform.system() == "Windows":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
                     print("\033[31m\033[1mERROR:\033[0m El elemento no existe")
                     sys.exit(1)
         case "n":
@@ -50,9 +59,15 @@ if response.status_code == 200:
 
     if promos:
         while True:
-            os.system('clear')
+            if platform.system() == "Windows":
+                os.system('cls')
+            else:
+                os.system('clear')
             r = input("¿Qué versión quieres? [Recommended/Latest] ")
-            os.system('clear')
+            if platform.system() == "Windows":
+                os.system('cls')
+            else:
+                os.system('clear')
             match r.lower():
                 case "recommended":
                     break
@@ -95,7 +110,7 @@ if response.status_code == 200:
                                         r.write(chunk)
                                         pbar.update(len(chunk))
                     case "Windows":
-                        path = f"C:\{os.environ['USERNAME']}\Documents\minecraft"
+                        path = f"C:/Users/{os.environ['USERNAME']}/Documents/minecraft"
                         if not os.path.exists(path):
                             os.mkdir(path)
                             with open(f"{path}/forge-{v}-installer.jar", "wb") as r:
@@ -127,9 +142,9 @@ if response.status_code == 200:
                 try:
                     os.system('cls')
                     if len(sys.argv) < 2:
-                        subprocess.run('./setup.bat')
+                        subprocess.run('setup.bat')
                     else:
-                        subprocess.run(['./setup.bat', sys.argv[1]])
+                        subprocess.run(['setup.bat', sys.argv[1]])
                 except Exception:
                     print("\033[31m\033[1mERROR:\033[0m El fichero no existe")
                     sys.exit(1)
