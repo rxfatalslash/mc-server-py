@@ -148,7 +148,7 @@ if response.status_code == 200:
             case "Linux":
                 try:
                     os.system('clear')
-                    subprocess.run(['chmod', '+x', 'setup.sh'])
+                    subprocess.run(['chmod', '+x', './scripts/setup.sh'])
                     if len(sys.argv) < 2:
                         subprocess.run('./scripts/setup.sh')
                     else:
