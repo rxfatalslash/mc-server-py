@@ -150,9 +150,9 @@ if response.status_code == 200:
                     os.system('clear')
                     subprocess.run(['chmod', '+x', 'setup.sh'])
                     if len(sys.argv) < 2:
-                        subprocess.run('./setup.sh')
+                        subprocess.run('./scripts/setup.sh')
                     else:
-                        subprocess.run(['./setup.sh', sys.argv[1]])
+                        subprocess.run(['./scripts/setup.sh', sys.argv[1]])
                 except Exception:
                     print("\033[31m\033[1mERROR:\033[0m El fichero no existe")
                     sys.exit(1)
@@ -160,9 +160,9 @@ if response.status_code == 200:
                 try:
                     os.system('cls')
                     if len(sys.argv) < 2:
-                        subprocess.run('setup.bat')
+                        subprocess.run('.\scripts\setup.bat')
                     else:
-                        subprocess.run(['setup.bat', sys.argv[1]])
+                        subprocess.run(['.\scripts\setup.bat', sys.argv[1]])
                 except Exception:
                     print("\033[31m\033[1mERROR:\033[0m El fichero no existe")
                     sys.exit(1)
