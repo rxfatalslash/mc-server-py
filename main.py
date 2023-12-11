@@ -109,10 +109,28 @@ if response.status_code == 200:
                                     for chunk in response.iter_content(chunk_size=4096):
                                         r.write(chunk)
                                         pbar.update(len(chunk))
+                        else:
+                            with open(f"{path}/forge-{v}-installer.jar", "wb") as r:
+                                with tqdm(
+                                    unit='B', unit_scale=True, unit_divisor=1024, miniters=1,
+                                    desc="\033[32m\033[1mEstado de descarga\033[0m", total=int(response.headers.get('content-length', 0))
+                                ) as pbar:
+                                    for chunk in response.iter_content(chunk_size=4096):
+                                        r.write(chunk)
+                                        pbar.update(len(chunk))
                     case "Windows":
                         path = f"C:/Users/{os.environ['USERNAME']}/Documents/minecraft"
                         if not os.path.exists(path):
                             os.mkdir(path)
+                            with open(f"{path}/forge-{v}-installer.jar", "wb") as r:
+                                with tqdm(
+                                    unit='B', unit_scale=True, unit_divisor=1024, miniters=1,
+                                    desc="\033[32m\033[1mEstado de descarga\033[0m", total=int(response.headers.get('content-length', 0))
+                                ) as pbar:
+                                    for chunk in response.iter_content(chunk_size=4096):
+                                        r.write(chunk)
+                                        pbar.update(len(chunk))
+                        else:
                             with open(f"{path}/forge-{v}-installer.jar", "wb") as r:
                                 with tqdm(
                                     unit='B', unit_scale=True, unit_divisor=1024, miniters=1,
