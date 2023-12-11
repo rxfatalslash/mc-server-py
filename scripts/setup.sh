@@ -207,15 +207,6 @@ case "$distro" in
         if [[ -z $wget ]]; then
             pacman -S wget --noconfirm
         fi
-
-        # Comprobar versión
-        file="$(basename $dir/forge-*-installer.jar | cut -d '-' -f2 | cut -d '.' -f2)"
-
-        if [ $file -le 16 ]; then
-            old_install
-        else
-            new_install
-        fi
     ;;
     ["Ubuntu""Debian"]*)
         printf "%s%sSistema Ubuntu detectado%s\n\n" "${BLD}" "${CGR}" "${CNC}"
@@ -232,18 +223,18 @@ case "$distro" in
         if [[ -z $wget ]]; then
             apt-get install -y wget
         fi
-
-        # Comprobar versión
-        file="$(basename $dir/forge-*-installer.jar | cut -d '-' -f2 | cut -d '.' -f2)"
-
-        if [ $file <= 16 ]; then
-            old_install
-        else
-            new_install
-        fi
     ;;
     *)
         printf "%s%sERROR:%s No existe soporte para esta versión de Linux\n\n" "${BLD}" "${CRE}" "${CNC}"
         exit 1
     ;;
 esac
+
+# Comprobar versión
+file="$(basename $dir/forge-*-installer.jar | cut -d '-' -f2 | cut -d '.' -f2)"
+
+if [ $file <= 16 ]; then
+    old_install
+else
+    new_install
+fi
