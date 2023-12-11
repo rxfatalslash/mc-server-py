@@ -24,7 +24,7 @@ This script works by passing the mods folder as an argument or without arguments
 <br><br>
 If you want to install mods you can pass the folder that contains the files of all the mods you want as an argument, otherwise you can leave the argument empty.
 ```
-python3 <mods>
+sudo python3 <mods>
 ```
 
 # 📋 License
